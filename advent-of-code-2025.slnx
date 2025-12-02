@@ -1,3 +1,4 @@
 <Solution>
-  <Project Path="src/CSharp/Day1/Day1.csproj" />
+  <Project Path="src/CSharp/Day1Part1/Day1Part1.csproj" />
+  <Project Path="src/CSharp/Day1Part2/Day1Part2.csproj" />
 </Solution>
