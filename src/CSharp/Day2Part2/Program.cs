@@ -11,43 +11,34 @@ foreach (var range in line.AsSpan().Split(','))
 
     for (ulong i = start; i <= end; i++)
     {
-        if (IsInvalid(i))
+        var places = (ulong)Math.Ceiling(Math.Log10(i));
+        for (ulong j = 2; j <= places; j++)
         {
-            sum += i;
+            if (ulong.DivRem(places, j) is not (var unit, 0))
+            {
+                continue;
+            }
+
+            var mask = (ulong)Math.Pow(10, unit);
+            var hasPattern = true;
+            (var num, var pattern) = ulong.DivRem(i, mask);
+            while (num > 0)
+            {
+                (num, var part) = ulong.DivRem(num, mask);
+                if (part != pattern)
+                {
+                    hasPattern = false;
+                    break;
+                }
+            }
+
+            if (hasPattern)
+            {
+                sum += i;
+                break;
+            }
         }
     }
 }
 
 Console.WriteLine(sum);
-
-bool IsInvalid(ulong num)
-{
-    var places = (ulong)Math.Ceiling(Math.Log10(num));
-    for (ulong i = 2; i <= places; i++)
-    {
-        if (HasPattern(num, places, i))
-        {
-            return true;
-        }
-    }
-    return false;
-}
-
-bool HasPattern(ulong num, ulong places, ulong fold)
-{
-    if (ulong.DivRem(places, fold) is not (var unit, 0))
-    {
-        return false;
-    }
-
-    var mask = (ulong)Math.Pow(10, unit);
-    for ((num, var pattern) = ulong.DivRem(num, mask); num > 0; num /= mask)
-    {
-        if (num % mask != pattern)
-        {
-            return false;
-        }
-    }
-
-    return true;
-}

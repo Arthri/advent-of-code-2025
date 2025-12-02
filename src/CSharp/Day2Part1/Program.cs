@@ -11,7 +11,9 @@ foreach (var range in line.AsSpan().Split(','))
 
     for (ulong i = start; i <= end; i++)
     {
-        if (IsInvalid(i))
+        if (ulong.DivRem((ulong)Math.Ceiling(Math.Log10(i)), 2) is (var unit, 0)
+         && ulong.DivRem(i, (ulong)Math.Pow(10, unit)) is var (left, right)
+         && left == right)
         {
             sum += i;
         }
@@ -19,16 +21,3 @@ foreach (var range in line.AsSpan().Split(','))
 }
 
 Console.WriteLine(sum);
-
-bool IsInvalid(ulong num)
-{
-    var places = (ulong)Math.Ceiling(Math.Log10(num));
-
-    if (ulong.DivRem(places, 2) is not (var unit, 0))
-    {
-        return false;
-    }
-
-    var mask = (ulong)Math.Pow(10, unit);
-    return num / mask == num % mask;
-}
