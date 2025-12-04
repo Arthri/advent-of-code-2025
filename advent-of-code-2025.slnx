@@ -5,4 +5,6 @@
   <Project Path="src/CSharp/Day2Part2/Day2Part2.csproj" Id="05113739-ea81-4bcd-9516-4d3288a0472c" />
   <Project Path="src/CSharp/Day3Part1/Day3Part1.csproj" Id="9f0975fb-9934-47c2-add0-7e083f557f46" />
   <Project Path="src/CSharp/Day3Part2/Day3Part2.csproj" Id="7230c206-056e-449e-9be3-638a841c164c" />
+  <Project Path="src/CSharp/Day4Part1/Day4Part1.csproj" Id="8887bafc-751d-4765-8b4a-2eab735f4c8f" />
+  <Project Path="src/CSharp/Day4Part2/Day4Part2.csproj" Id="d2744ae6-a22e-4108-bee7-dc517ce0f20c" />
 </Solution>
